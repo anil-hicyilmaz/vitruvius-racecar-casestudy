@@ -1,0 +1,30 @@
+module kit.sdq.kastel.vitruvius.casestudy.model
+
+import org.eclipse.emf.mwe2.ecore.EcoreGenerator
+import org.eclipse.emf.mwe.utils.StandaloneSetup
+
+var workspaceRoot = ".."
+
+Workflow {
+
+    bean = StandaloneSetup {
+        scanClassPath = true
+        platformUri = workspaceRoot
+    }
+
+    component = EcoreGenerator {
+        genModel =
+            "platform:/resource/case-study-model/src/main/ecore/racecar.genmodel"
+        srcPath =
+            "platform:/resource/case-study-model/target/generated-sources/ecore"
+        generateCustomClasses = false
+    }
+
+    component = EcoreGenerator {
+        genModel =
+            "platform:/resource/case-study-model/src/main/ecore/electricalracecar.genmodel"
+        srcPath =
+            "platform:/resource/case-study-model/target/generated-sources/ecore"
+        generateCustomClasses = false
+    }
+}

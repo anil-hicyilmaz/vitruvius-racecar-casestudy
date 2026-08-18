@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/case-study/model/target/generated-sources/ecore"
+    modelPluginID="case-study-model" modelName="Electricalracecar" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>electricalracecar.ecore</foreignModel>
+  <genPackages prefix="Electricalracecar" basePackage="kit.sdq.kastel.vitruvius.casestudy.model"
+      disposableProviderFactory="true" ecorePackage="electricalracecar.ecore#/">
+    <genClasses ecoreClass="electricalracecar.ecore#//ElectricalRaceCar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//ElectricalRaceCar/vehicleId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference electricalracecar.ecore#//ElectricalRaceCar/powertrain"/>
+    </genClasses>
+    <genClasses ecoreClass="electricalracecar.ecore#//ElectricPowertrain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//ElectricPowertrain/powertrainId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//ElectricPowertrain/mass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//ElectricPowertrain/maxPower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//ElectricPowertrain/mountInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference electricalracecar.ecore#//ElectricPowertrain/inverter"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference electricalracecar.ecore#//ElectricPowertrain/battery"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference electricalracecar.ecore#//ElectricPowertrain/motor"/>
+    </genClasses>
+    <genClasses ecoreClass="electricalracecar.ecore#//ElectricMotor">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//ElectricMotor/maxPower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//ElectricMotor/mass"/>
+    </genClasses>
+    <genClasses ecoreClass="electricalracecar.ecore#//Battery">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//Battery/capacity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//Battery/mass"/>
+    </genClasses>
+    <genClasses ecoreClass="electricalracecar.ecore#//Inverter">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//Inverter/maxPower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute electricalracecar.ecore#//Inverter/mass"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
