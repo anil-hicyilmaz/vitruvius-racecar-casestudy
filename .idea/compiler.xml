@@ -9,7 +9,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="case-study" target="21" />
       <module name="case-study-consistency" target="21" />
       <module name="case-study-model" target="21" />
       <module name="case-study-viewtype" target="21" />

@@ -5,123 +5,123 @@
              http://maven.apache.org/POM/4.0.0
              https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-    <modelVersion>4.0.0</modelVersion>
+  <modelVersion>4.0.0</modelVersion>
 
-    <!-- Vitruvius build configuration -->
-    <parent>
+  <!-- Vitruvius build configuration -->
+  <parent>
+    <groupId>tools.vitruv</groupId>
+    <artifactId>parent</artifactId>
+    <version>4.0.0</version>
+  </parent>
+
+  <!-- Case-study coordinates -->
+  <groupId>kit.sdq.kastel.vitruvius</groupId>
+  <artifactId>case-study</artifactId>
+  <version>0.1.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>F1 Race Car VSUM</name>
+  <description>
+    VSUM case study for generic, electrical and combustion race-car models.
+  </description>
+
+  <!-- Maven submodules -->
+  <modules>
+    <module>model</module>
+    <module>consistency</module>
+    <module>viewtype</module>
+    <module>vsum</module>
+  </modules>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- Current Vitruvius version -->
+    <vitruv.version>4.0.0</vitruv.version>
+
+    <!-- Current Vitruvius parent requires Java 21 -->
+    <maven.compiler.release>21</maven.compiler.release>
+
+    <emf.common.version>2.45.0</emf.common.version>
+    <emf.ecore.version>2.42.0</emf.ecore.version>
+    <junit.version>6.1.2</junit.version>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+
+      <!-- Vitruvius change model -->
+      <dependency>
         <groupId>tools.vitruv</groupId>
-        <artifactId>parent</artifactId>
-        <version>4.0.0</version>
-    </parent>
+        <artifactId>tools.vitruv.change.atomic</artifactId>
+        <version>${vitruv.version}</version>
+      </dependency>
 
-    <!-- Case-study coordinates -->
-    <groupId>kit.sdq.kastel.vitruvius</groupId>
-    <artifactId>case-study</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+      <dependency>
+        <groupId>tools.vitruv</groupId>
+        <artifactId>tools.vitruv.change.composite</artifactId>
+        <version>${vitruv.version}</version>
+      </dependency>
 
-    <name>F1 Race Car VSUM</name>
-    <description>
-        VSUM case study for generic, electrical and combustion race-car models.
-    </description>
+      <dependency>
+        <groupId>tools.vitruv</groupId>
+        <artifactId>tools.vitruv.change.interaction</artifactId>
+        <version>${vitruv.version}</version>
+      </dependency>
 
-    <!-- Maven submodules -->
-    <modules>
-        <module>model</module>
-        <module>consistency</module>
-        <module>viewtype</module>
-        <module>vsum</module>
-    </modules>
+      <dependency>
+        <groupId>tools.vitruv</groupId>
+        <artifactId>tools.vitruv.change.propagation</artifactId>
+        <version>${vitruv.version}</version>
+      </dependency>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+      <dependency>
+        <groupId>tools.vitruv</groupId>
+        <artifactId>tools.vitruv.change.testutils.integration</artifactId>
+        <version>${vitruv.version}</version>
+      </dependency>
 
-        <!-- Current Vitruvius version -->
-        <vitruv.version>4.0.0</vitruv.version>
+      <!-- Reactions runtime -->
+      <dependency>
+        <groupId>tools.vitruv</groupId>
+        <artifactId>tools.vitruv.dsls.reactions.runtime</artifactId>
+        <version>${vitruv.version}</version>
+      </dependency>
 
-        <!-- Current Vitruvius parent requires Java 21 -->
-        <maven.compiler.release>21</maven.compiler.release>
+      <!-- VSUM and View APIs -->
+      <dependency>
+        <groupId>tools.vitruv</groupId>
+        <artifactId>tools.vitruv.framework.views</artifactId>
+        <version>${vitruv.version}</version>
+      </dependency>
 
-        <emf.common.version>2.45.0</emf.common.version>
-        <emf.ecore.version>2.42.0</emf.ecore.version>
-        <junit.version>6.1.2</junit.version>
-    </properties>
+      <dependency>
+        <groupId>tools.vitruv</groupId>
+        <artifactId>tools.vitruv.framework.vsum</artifactId>
+        <version>${vitruv.version}</version>
+      </dependency>
 
-    <dependencyManagement>
-        <dependencies>
+      <!-- Eclipse Modeling Framework -->
+      <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.common</artifactId>
+        <version>${emf.common.version}</version>
+      </dependency>
 
-            <!-- Vitruvius change model -->
-            <dependency>
-                <groupId>tools.vitruv</groupId>
-                <artifactId>tools.vitruv.change.atomic</artifactId>
-                <version>${vitruv.version}</version>
-            </dependency>
+      <dependency>
+        <groupId>org.eclipse.emf</groupId>
+        <artifactId>org.eclipse.emf.ecore</artifactId>
+        <version>${emf.ecore.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>tools.vitruv</groupId>
-                <artifactId>tools.vitruv.change.composite</artifactId>
-                <version>${vitruv.version}</version>
-            </dependency>
+      <!-- Tests -->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit.version}</version>
+      </dependency>
 
-            <dependency>
-                <groupId>tools.vitruv</groupId>
-                <artifactId>tools.vitruv.change.interaction</artifactId>
-                <version>${vitruv.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>tools.vitruv</groupId>
-                <artifactId>tools.vitruv.change.propagation</artifactId>
-                <version>${vitruv.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>tools.vitruv</groupId>
-                <artifactId>tools.vitruv.change.testutils.integration</artifactId>
-                <version>${vitruv.version}</version>
-            </dependency>
-
-            <!-- Reactions runtime -->
-            <dependency>
-                <groupId>tools.vitruv</groupId>
-                <artifactId>tools.vitruv.dsls.reactions.runtime</artifactId>
-                <version>${vitruv.version}</version>
-            </dependency>
-
-            <!-- VSUM and View APIs -->
-            <dependency>
-                <groupId>tools.vitruv</groupId>
-                <artifactId>tools.vitruv.framework.views</artifactId>
-                <version>${vitruv.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>tools.vitruv</groupId>
-                <artifactId>tools.vitruv.framework.vsum</artifactId>
-                <version>${vitruv.version}</version>
-            </dependency>
-
-            <!-- Eclipse Modeling Framework -->
-            <dependency>
-                <groupId>org.eclipse.emf</groupId>
-                <artifactId>org.eclipse.emf.common</artifactId>
-                <version>${emf.common.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.eclipse.emf</groupId>
-                <artifactId>org.eclipse.emf.ecore</artifactId>
-                <version>${emf.ecore.version}</version>
-            </dependency>
-
-            <!-- Tests -->
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>${junit.version}</version>
-            </dependency>
-
-        </dependencies>
-    </dependencyManagement>
+    </dependencies>
+  </dependencyManagement>
 
 </project>
