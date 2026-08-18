@@ -1,4 +1,19 @@
-.idea/
-*.iml
 # Maven build output
 **/target/
+*.log
+
+# IntelliJ IDEA
+/.idea/
+*.iml
+*.iws
+
+# Eclipse generated output
+/.metadata/
+**/bin/
+**/.apt_generated/
+**/.apt_generated_tests/
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini

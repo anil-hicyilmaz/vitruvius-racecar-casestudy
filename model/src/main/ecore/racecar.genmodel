@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/case-study/model/target/generated-sources/ecore"
+    modelPluginID="case-study-model" modelName="Racecar" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>racecar.ecore</foreignModel>
+  <genPackages prefix="Racecar" basePackage="kit.sdq.kastel.vitruvius.casestudy.model"
+      disposableProviderFactory="true" ecorePackage="racecar.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="racecar.ecore#//PropulsionKind">
+      <genEnumLiterals ecoreEnumLiteral="racecar.ecore#//PropulsionKind/UNSPECIFIED"/>
+      <genEnumLiterals ecoreEnumLiteral="racecar.ecore#//PropulsionKind/COMBUSTION"/>
+      <genEnumLiterals ecoreEnumLiteral="racecar.ecore#//PropulsionKind/ELECTRIC"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="racecar.ecore#//Position">
+      <genEnumLiterals ecoreEnumLiteral="racecar.ecore#//Position/UNSPECIFIED"/>
+      <genEnumLiterals ecoreEnumLiteral="racecar.ecore#//Position/FRONT"/>
+      <genEnumLiterals ecoreEnumLiteral="racecar.ecore#//Position/REAR"/>
+    </genEnums>
+    <genClasses ecoreClass="racecar.ecore#//RaceCar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//RaceCar/vehicleId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//RaceCar/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//RaceCar/totalMass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//RaceCar/propulsionKind"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//RaceCar/ratedPower"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference racecar.ecore#//RaceCar/axles"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference racecar.ecore#//RaceCar/chassis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference racecar.ecore#//RaceCar/powertrainSlot"/>
+    </genClasses>
+    <genClasses ecoreClass="racecar.ecore#//Chassis">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Chassis/typeId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Chassis/mass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Chassis/mountInterface"/>
+    </genClasses>
+    <genClasses ecoreClass="racecar.ecore#//Axle">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Axle/position"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Axle/driven"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference racecar.ecore#//Axle/wheels"/>
+    </genClasses>
+    <genClasses ecoreClass="racecar.ecore#//Wheel">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Wheel/typeId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Wheel/diameter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Wheel/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//Wheel/mass"/>
+    </genClasses>
+    <genClasses ecoreClass="racecar.ecore#//PowertrainSlot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//PowertrainSlot/requiredType"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute racecar.ecore#//PowertrainSlot/mountInterface"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>

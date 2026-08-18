@@ -28,10 +28,10 @@
             </plugin>
 
             <!-- Executes workflow/generate.mwe2 -->
-            <!-- <plugin>
+            <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
-            </plugin> -->
+            </plugin>
         </plugins>
     </build>
 
