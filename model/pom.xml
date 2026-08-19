@@ -21,16 +21,25 @@
 
     <build>
         <plugins>
-            <!-- Adds generated EMF sources to the compilation path -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
             </plugin>
 
-            <!-- Executes workflow/generate.mwe2 -->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>exec-maven-plugin</artifactId>
+            </plugin>
+
+            <plugin>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                    <archive>
+                        <manifestFile>
+                            ${project.basedir}/META-INF/MANIFEST.MF
+                        </manifestFile>
+                    </archive>
+                </configuration>
             </plugin>
         </plugins>
     </build>
