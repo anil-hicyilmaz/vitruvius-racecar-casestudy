@@ -21,19 +21,53 @@ reaction CreateElectricalRaceCar {
 routine createElectricalRaceCar(racecar::RaceCar raceCar) {
 
     match {
-        require absence of electrical::ElectricalRaceCar corresponding to raceCar
+        require absence of electrical::ElectricalRaceCar
+            corresponding to raceCar
     }
 
     create {
-        val electricalRaceCar = new electrical::ElectricalRaceCar
+        val electricalRaceCar =
+            new electrical::ElectricalRaceCar
+
+        val electricPowertrain =
+            new electrical::ElectricPowertrain
+
+        val battery =
+            new electrical::Battery
+
+        val motor =
+            new electrical::ElectricMotor
+
+        val inverter =
+            new electrical::Inverter
     }
 
     update {
         electricalRaceCar.vehicleId = raceCar.vehicleId
+        electricPowertrain.maxPower = raceCar.ratedPower
+
+        if (raceCar.powertrainSlot !== null) {
+            electricPowertrain.mountInterface =
+                raceCar.powertrainSlot.mountInterface
+        }
+
+        electricPowertrain.battery = battery
+        electricPowertrain.motor = motor
+        electricPowertrain.inverter = inverter
+
+        electricalRaceCar.powertrain = electricPowertrain
+
+        persistProjectRelative(
+            raceCar,
+            electricalRaceCar,
+            "models/electrical/" +
+                raceCar.vehicleId +
+                ".electricalracecar"
+        )
 
         addCorrespondenceBetween(
-            electricalRaceCar,
-            raceCar
+            raceCar,
+            electricalRaceCar
         )
     }
 }
