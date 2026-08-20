@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Arrays;
+import mir.reactions.electrical2racecar.Electrical2racecarChangePropagationSpecification;
 import mir.reactions.racecar2electrical.Racecar2electricalChangePropagationSpecification;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
@@ -36,7 +37,9 @@ public final class RaceCarVsum {
         .withUserInteractorForResultProvider(
             new TestUserInteraction.ResultProvider(new TestUserInteraction()))
         .withChangePropagationSpecifications(
-            new Racecar2electricalChangePropagationSpecification())
+            new Racecar2electricalChangePropagationSpecification(),
+            new Electrical2racecarChangePropagationSpecification()
+    )
         .buildAndInitialize();
   }
 
