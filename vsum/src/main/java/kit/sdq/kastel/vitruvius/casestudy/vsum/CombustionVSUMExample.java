@@ -229,7 +229,7 @@ public final class CombustionVSUMExample {
     Chassis chassis = RacecarFactory.eINSTANCE.createChassis();
     chassis.setTypeId("CH-MONOCOQUE-01");
     chassis.setMountInterface("STD-CHASSIS-MOUNT-A");
-    chassis.getMass().add(102.5); // Chassis.mass is list-valued (upperBound="-1" in racecar.ecore)
+    chassis.setMass(102.5);
     return chassis;
   }
 
@@ -246,10 +246,9 @@ public final class CombustionVSUMExample {
   private static Wheel buildWheel(String typeId, double diameter, double width, double mass) {
     Wheel wheel = RacecarFactory.eINSTANCE.createWheel();
     wheel.setTypeId("W-" + typeId);
-    // Wheel.diameter / width / mass are all list-valued (upperBound="-1"), no setters exist.
-    wheel.getDiameter().add(diameter);
-    wheel.getWidth().add(width);
-    wheel.getMass().add(mass);
+    wheel.setDiameter(diameter);
+    wheel.setWidth(width);
+    wheel.setMass(mass);
     return wheel;
   }
 

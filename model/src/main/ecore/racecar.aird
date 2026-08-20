@@ -4,7 +4,7 @@
     <semanticResources>racecar.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_qOlm0Jf7EfGz98slPgE2Vg">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_-PsksJf7EfGz98slPgE2Vg" name="Race Car class diagram" repPath="#_-PphYJf7EfGz98slPgE2Vg" changeId="1786727844805">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_-PsksJf7EfGz98slPgE2Vg" name="Race Car class diagram" repPath="#_-PphYJf7EfGz98slPgE2Vg" changeId="1787221023574">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="racecar.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -222,21 +222,21 @@
           <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zZrjypgDEfGz98slPgE2Vg" id="(0.6071428571428571,1.0)"/>
           <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_zZrjy5gDEfGz98slPgE2Vg" id="(0.5,0.0)"/>
         </edges>
-        <edges xmi:type="notation:Edge" xmi:id="_5OUb4JgDEfGz98slPgE2Vg" type="4001" element="_5OQKdpgDEfGz98slPgE2Vg" source="_DoCiYJf8EfGz98slPgE2Vg" target="_sithYJgCEfGz98slPgE2Vg">
-          <children xmi:type="notation:Node" xmi:id="_5OUb5JgDEfGz98slPgE2Vg" type="6001">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5OUb5ZgDEfGz98slPgE2Vg" x="-13" y="-16"/>
+        <edges xmi:type="notation:Edge" xmi:id="_3vk2UJx_EfGzdPLZCy4etA" type="4001" element="_3vjBJpx_EfGzdPLZCy4etA" source="_DoCiYJf8EfGz98slPgE2Vg" target="_sithYJgCEfGz98slPgE2Vg">
+          <children xmi:type="notation:Node" xmi:id="_3vldYJx_EfGzdPLZCy4etA" type="6001">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3vldYZx_EfGzdPLZCy4etA" y="-10"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_5OUb5pgDEfGz98slPgE2Vg" type="6002">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5OUb55gDEfGz98slPgE2Vg" x="-3" y="10"/>
+          <children xmi:type="notation:Node" xmi:id="_3vldYpx_EfGzdPLZCy4etA" type="6002">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3vldY5x_EfGzdPLZCy4etA" y="10"/>
           </children>
-          <children xmi:type="notation:Node" xmi:id="_5OUb6JgDEfGz98slPgE2Vg" type="6003">
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5OUb6ZgDEfGz98slPgE2Vg" x="-122" y="2"/>
+          <children xmi:type="notation:Node" xmi:id="_3vldZJx_EfGzdPLZCy4etA" type="6003">
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_3vldZZx_EfGzdPLZCy4etA" y="10"/>
           </children>
-          <styles xmi:type="notation:ConnectorStyle" xmi:id="_5OUb4ZgDEfGz98slPgE2Vg" routing="Rectilinear"/>
-          <styles xmi:type="notation:FontStyle" xmi:id="_5OUb4pgDEfGz98slPgE2Vg" fontColor="7490599" fontName="Segoe UI" fontHeight="8"/>
-          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_5OUb45gDEfGz98slPgE2Vg" points="[0, 0, 200, -2]$[-200, 0, 0, -2]"/>
-          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5OUb6pgDEfGz98slPgE2Vg" id="(0.0,0.7920792079207921)"/>
-          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_5OUb65gDEfGz98slPgE2Vg" id="(1.0,0.6260162601626016)"/>
+          <styles xmi:type="notation:ConnectorStyle" xmi:id="_3vk2UZx_EfGzdPLZCy4etA" routing="Rectilinear"/>
+          <styles xmi:type="notation:FontStyle" xmi:id="_3vk2Upx_EfGzdPLZCy4etA" fontColor="7490599" fontName=".AppleSystemUIFont" fontHeight="8"/>
+          <bendpoints xmi:type="notation:RelativeBendpoints" xmi:id="_3vk2U5x_EfGzdPLZCy4etA" points="[-71, 0, 309, 17]$[-225, 0, 155, 17]$[-225, -17, 155, 0]$[-380, -17, 0, 0]"/>
+          <sourceAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3vmrgJx_EfGzdPLZCy4etA" id="(0.5,0.5)"/>
+          <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_3vmrgZx_EfGzdPLZCy4etA" id="(0.5,0.5)"/>
         </edges>
       </data>
     </ownedAnnotationEntries>
@@ -260,7 +260,7 @@
         </computedStyleDescriptions>
       </data>
     </ownedAnnotationEntries>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_DnyDsJf8EfGz98slPgE2Vg" name="RaceCar" tooltipText="" outgoingEdges="_tIujEJgDEfGz98slPgE2Vg _zZn5bJgDEfGz98slPgE2Vg _5OQKdpgDEfGz98slPgE2Vg" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_DnyDsJf8EfGz98slPgE2Vg" name="RaceCar" tooltipText="" outgoingEdges="_tIujEJgDEfGz98slPgE2Vg _zZn5bJgDEfGz98slPgE2Vg _3vjBJpx_EfGzdPLZCy4etA" width="12" height="10">
       <target xmi:type="ecore:EClass" href="racecar.ecore#//RaceCar"/>
       <semanticElements xmi:type="ecore:EClass" href="racecar.ecore#//RaceCar"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_dA_DcZgDEfGz98slPgE2Vg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
@@ -270,20 +270,20 @@
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_MmRMMJf9EfGz98slPgE2Vg" name="vehicleId : EString" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="racecar.ecore#//RaceCar/vehicleId"/>
         <semanticElements xmi:type="ecore:EAttribute" href="racecar.ecore#//RaceCar/vehicleId"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_deLkgZf9EfGz98slPgE2Vg" labelAlignment="LEFT">
-          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_3vhL9Zx_EfGzdPLZCy4etA" labelAlignment="LEFT" description="_evH9F5f_EfGz98slPgE2Vg">
+          <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_fg31AJf9EfGz98slPgE2Vg" name="name : EString" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="racecar.ecore#//RaceCar/name"/>
         <semanticElements xmi:type="ecore:EAttribute" href="racecar.ecore#//RaceCar/name"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_r1xVJJf9EfGz98slPgE2Vg" labelAlignment="LEFT">
-          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_3vhL95x_EfGzdPLZCy4etA" labelAlignment="LEFT" description="_evH9F5f_EfGz98slPgE2Vg">
+          <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_tpLMcJf9EfGz98slPgE2Vg" name="totalMass : EDouble" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_tpLMcJf9EfGz98slPgE2Vg" name="totalMass : EDouble = 0.0" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="racecar.ecore#//RaceCar/totalMass"/>
         <semanticElements xmi:type="ecore:EAttribute" href="racecar.ecore#//RaceCar/totalMass"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_zvfqdpf9EfGz98slPgE2Vg" labelAlignment="LEFT">
@@ -299,11 +299,11 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_dchiMJf-EfGz98slPgE2Vg" name="ratedPower : EDouble" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_dchiMJf-EfGz98slPgE2Vg" name="ratedPower : EDouble = 0.0" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="racecar.ecore#//RaceCar/ratedPower"/>
         <semanticElements xmi:type="ecore:EAttribute" href="racecar.ecore#//RaceCar/ratedPower"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_hm4p25f-EfGz98slPgE2Vg" labelAlignment="LEFT">
-          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_3vhL-5x_EfGzdPLZCy4etA" labelAlignment="LEFT" description="_evH9F5f_EfGz98slPgE2Vg">
+          <labelFormat>bold</labelFormat>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
@@ -323,7 +323,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_bGWDEJgAEfGz98slPgE2Vg" name="mass : EDouble" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_bGWDEJgAEfGz98slPgE2Vg" name="mass : EDouble = 0.0" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="racecar.ecore#//Chassis/mass"/>
         <semanticElements xmi:type="ecore:EAttribute" href="racecar.ecore#//Chassis/mass"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_cwVftJgAEfGz98slPgE2Vg" labelAlignment="LEFT">
@@ -443,7 +443,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_nA7wUJgBEfGz98slPgE2Vg" name="diameter : EDouble" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_nA7wUJgBEfGz98slPgE2Vg" name="diameter : EDouble = 0.0" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="racecar.ecore#//Wheel/diameter"/>
         <semanticElements xmi:type="ecore:EAttribute" href="racecar.ecore#//Wheel/diameter"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_qIVmIpgBEfGz98slPgE2Vg" labelAlignment="LEFT">
@@ -451,7 +451,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_tNIM0JgBEfGz98slPgE2Vg" name="width : EDouble" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_tNIM0JgBEfGz98slPgE2Vg" name="width : EDouble = 0.0" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="racecar.ecore#//Wheel/width"/>
         <semanticElements xmi:type="ecore:EAttribute" href="racecar.ecore#//Wheel/width"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_vpN0zJgBEfGz98slPgE2Vg" labelAlignment="LEFT">
@@ -459,7 +459,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_xQyPgJgBEfGz98slPgE2Vg" name="mass : EDouble" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_xQyPgJgBEfGz98slPgE2Vg" name="mass : EDouble = 0.0" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="racecar.ecore#//Wheel/mass"/>
         <semanticElements xmi:type="ecore:EAttribute" href="racecar.ecore#//Wheel/mass"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_zwgaVZgBEfGz98slPgE2Vg" labelAlignment="LEFT">
@@ -479,7 +479,7 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_siqeEJgCEfGz98slPgE2Vg" name="PowertrainSlot" tooltipText="" incomingEdges="_5OQKdpgDEfGz98slPgE2Vg" width="12" height="10">
+    <ownedDiagramElements xmi:type="diagram:DNodeList" uid="_siqeEJgCEfGz98slPgE2Vg" name="PowertrainSlot" tooltipText="" incomingEdges="_3vjBJpx_EfGzdPLZCy4etA" width="12" height="10">
       <target xmi:type="ecore:EClass" href="racecar.ecore#//PowertrainSlot"/>
       <semanticElements xmi:type="ecore:EClass" href="racecar.ecore#//PowertrainSlot"/>
       <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_pM3xgpgDEfGz98slPgE2Vg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
@@ -525,14 +525,16 @@
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
-    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_5OQKdpgDEfGz98slPgE2Vg" name="[1..1] powertrainslot" sourceNode="_DnyDsJf8EfGz98slPgE2Vg" targetNode="_siqeEJgCEfGz98slPgE2Vg">
-      <target xmi:type="ecore:EReference" href="racecar.ecore#//RaceCar/powertrainslot"/>
-      <semanticElements xmi:type="ecore:EReference" href="racecar.ecore#//RaceCar/powertrainslot"/>
-      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_5_FxgJgDEfGz98slPgE2Vg" description="_kB9BQJgCEfGz98slPgE2Vg" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
-        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_5_FxgpgDEfGz98slPgE2Vg" showIcon="false">
+    <ownedDiagramElements xmi:type="diagram:DEdge" uid="_3vjBJpx_EfGzdPLZCy4etA" name="[1..1] powertrainSlot" sourceNode="_DnyDsJf8EfGz98slPgE2Vg" targetNode="_siqeEJgCEfGz98slPgE2Vg">
+      <target xmi:type="ecore:EReference" href="racecar.ecore#//RaceCar/powertrainSlot"/>
+      <semanticElements xmi:type="ecore:EReference" href="racecar.ecore#//RaceCar/powertrainSlot"/>
+      <ownedStyle xmi:type="diagram:EdgeStyle" uid="_3vjBJ5x_EfGzdPLZCy4etA" description="_kB9BQJgCEfGz98slPgE2Vg" sourceArrow="FillDiamond" routingStyle="manhattan" strokeColor="0,0,0">
+        <centerLabelStyle xmi:type="diagram:CenterLabelStyle" uid="_3vjBKZx_EfGzdPLZCy4etA" showIcon="false">
           <labelFormat>bold</labelFormat>
         </centerLabelStyle>
-        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_5_FxgZgDEfGz98slPgE2Vg" labelSize="6" showIcon="false" labelColor="39,76,114"/>
+        <endLabelStyle xmi:type="diagram:EndLabelStyle" uid="_3vjBKJx_EfGzdPLZCy4etA" showIcon="false" labelColor="39,76,114">
+          <customFeatures>labelSize</customFeatures>
+        </endLabelStyle>
       </ownedStyle>
       <actualMapping xmi:type="description_1:EdgeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@edgeMappings[name='EC_EReference']"/>
     </ownedDiagramElements>
