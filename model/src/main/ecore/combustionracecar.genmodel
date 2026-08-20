@@ -9,6 +9,7 @@
       disposableProviderFactory="true" ecorePackage="combustionracecar.ecore#/">
     <genClasses ecoreClass="combustionracecar.ecore#//CombustionRaceCar">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionRaceCar/vehicleId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionRaceCar/name"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference combustionracecar.ecore#//CombustionRaceCar/powertrain"/>
     </genClasses>
     <genClasses ecoreClass="combustionracecar.ecore#//CombustionPowertrain">
