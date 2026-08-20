@@ -32,7 +32,11 @@ routine createCombustionRaceCar(racecar::RaceCar raceCar) {
          combustionRaceCar.vehicleId = raceCar.vehicleId
          combustionRaceCar.name = raceCar.name
 
-        persistProjectRelative(raceCar, combustionRaceCar, "example.combustionracecar")
+        persistProjectRelative(
+            raceCar,
+            combustionRaceCar,
+            "models/combustion/" + raceCar.vehicleId + ".combustionracecar"
+        )
 
         addCorrespondenceBetween(combustionRaceCar, raceCar)
     }
