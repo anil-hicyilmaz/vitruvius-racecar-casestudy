@@ -27,4 +27,12 @@ Workflow {
             "platform:/resource/case-study-model/target/generated-sources/ecore"
         generateCustomClasses = false
     }
+
+    component = EcoreGenerator {
+        genModel =
+            "platform:/resource/case-study-model/src/main/ecore/combustionracecar.genmodel"
+        srcPath =
+            "platform:/resource/case-study-model/target/generated-sources/ecore"
+        generateCustomClasses = false
+    }
 }
