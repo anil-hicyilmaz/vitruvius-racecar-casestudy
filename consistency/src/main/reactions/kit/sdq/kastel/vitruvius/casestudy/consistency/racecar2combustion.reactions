@@ -29,10 +29,117 @@ routine createCombustionRaceCar(racecar::RaceCar raceCar) {
     }
 
     update {
-        combustionRaceCar.vehicleId = raceCar.vehicleId
+         combustionRaceCar.vehicleId = raceCar.vehicleId
+         combustionRaceCar.name = raceCar.name
 
         persistProjectRelative(raceCar, combustionRaceCar, "example.combustionracecar")
 
         addCorrespondenceBetween(combustionRaceCar, raceCar)
+    }
+}
+
+reaction PowertrainSlotSetOnRaceCar {
+    after element racecar::PowertrainSlot replaced at racecar::RaceCar[powertrainSlot]
+    with newValue !== null
+
+    call createCombustionPowertrain(affectedEObject, newValue)
+}
+
+routine createCombustionPowertrain(racecar::RaceCar raceCar, racecar::PowertrainSlot slot) {
+
+    match {
+        require absence of combustion::CombustionPowertrain corresponding to slot
+        val cCar = retrieve combustion::CombustionRaceCar corresponding to raceCar
+    }
+
+    create {
+        val cPowertrain = new combustion::CombustionPowertrain
+        val cEngine     = new combustion::CombustionEngine
+        val cFuelTank   = new combustion::FuelTank
+        val cExhaust    = new combustion::ExhaustSystem
+    }
+
+    update {
+        cPowertrain.mountInterface = slot.mountInterface
+        cPowertrain.maxPower = raceCar.ratedPower
+        cEngine.maxPower = raceCar.ratedPower
+
+        cPowertrain.engine = cEngine
+        cPowertrain.fuelTank = cFuelTank
+        cPowertrain.exhaustSystem = cExhaust
+
+        cCar.powertrain = cPowertrain
+
+        addCorrespondenceBetween(cPowertrain, slot)
+        addCorrespondenceBetween(cEngine, slot)
+    }
+}
+
+reaction RaceCarVehicleIdChanged {
+    after attribute replaced at racecar::RaceCar[vehicleId]
+    call updateCombustionVehicleId(affectedEObject)
+}
+
+
+routine updateCombustionVehicleId(racecar::RaceCar raceCar) {
+
+    match {
+        val cCar = retrieve combustion::CombustionRaceCar corresponding to raceCar
+    }
+
+    update {
+        cCar.vehicleId = raceCar.vehicleId
+    }
+}
+
+reaction PowertrainSlotDeleted {
+    after element racecar::PowertrainSlot deleted
+    call deleteCombustionPowertrain(affectedEObject)
+}
+
+
+routine deleteCombustionPowertrain(racecar::PowertrainSlot slot) {
+
+    match {
+        val cPowertrain = retrieve combustion::CombustionPowertrain corresponding to slot
+    }
+
+    update {
+        removeObject(cPowertrain)
+        removeCorrespondenceBetween(cPowertrain, slot)
+    }
+}
+
+reaction RaceCarRatedPowerChanged {
+    after attribute replaced at racecar::RaceCar[ratedPower]
+    call updateEngineMaxPower(affectedEObject)
+}
+
+
+routine updateEngineMaxPower(racecar::RaceCar raceCar) {
+
+    match {
+        val cEngine = retrieve combustion::CombustionEngine corresponding to raceCar.powertrainSlot
+    }
+
+    update {
+        cEngine.maxPower = raceCar.ratedPower
+    }
+}
+
+reaction RaceCarNameChanged {
+    after attribute replaced at racecar::RaceCar[name]
+    call updateCombustionName(affectedEObject)
+}
+
+
+routine updateCombustionName(racecar::RaceCar raceCar) {
+
+    match {
+        val cCar = retrieve combustion::CombustionRaceCar corresponding to raceCar
+    }
+
+    update {
+        cCar.name = raceCar.name
     }
 }

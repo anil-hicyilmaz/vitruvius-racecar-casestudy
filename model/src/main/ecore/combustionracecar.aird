@@ -4,7 +4,7 @@
     <semanticResources>combustionracecar.ecore</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_jBHisJxdEfGzdPLZCy4etA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_vz4qkJxdEfGzdPLZCy4etA" name="combustionracecar class diagram" repPath="#_vzwuwJxdEfGzdPLZCy4etA" changeId="1787207297539">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_vz4qkJxdEfGzdPLZCy4etA" name="combustionracecar class diagram" repPath="#_vzwuwJxdEfGzdPLZCy4etA" changeId="1787213125757">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="combustionracecar.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -28,6 +28,10 @@
             <children xmi:type="notation:Node" xmi:id="_s4dl0JxeEfGzdPLZCy4etA" type="3010" element="_s4TNwJxeEfGzdPLZCy4etA">
               <styles xmi:type="notation:FontStyle" xmi:id="_s4dl0ZxeEfGzdPLZCy4etA" fontColor="2697711" fontName=".AppleSystemUIFont" fontHeight="8"/>
               <layoutConstraint xmi:type="notation:Location" xmi:id="_s4dl0pxeEfGzdPLZCy4etA"/>
+            </children>
+            <children xmi:type="notation:Node" xmi:id="_5n354JxtEfGzdPLZCy4etA" type="3010" element="_5njJw5xtEfGzdPLZCy4etA">
+              <styles xmi:type="notation:FontStyle" xmi:id="_5n354ZxtEfGzdPLZCy4etA" fontName=".AppleSystemUIFont" fontHeight="8"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_5n354pxtEfGzdPLZCy4etA"/>
             </children>
             <styles xmi:type="notation:SortingStyle" xmi:id="_5DX48ZxdEfGzdPLZCy4etA"/>
             <styles xmi:type="notation:FilteringStyle" xmi:id="_5DX48pxdEfGzdPLZCy4etA"/>
@@ -211,6 +215,14 @@
         <target xmi:type="ecore:EAttribute" href="combustionracecar.ecore#//CombustionRaceCar/vehicleId"/>
         <semanticElements xmi:type="ecore:EAttribute" href="combustionracecar.ecore#//CombustionRaceCar/vehicleId"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_wV_cqpxeEfGzdPLZCy4etA" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
+        </ownedStyle>
+        <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
+      </ownedElements>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_5njJw5xtEfGzdPLZCy4etA" name="name : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="combustionracecar.ecore#//CombustionRaceCar/name"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="combustionracecar.ecore#//CombustionRaceCar/name"/>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_5njJxJxtEfGzdPLZCy4etA" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
