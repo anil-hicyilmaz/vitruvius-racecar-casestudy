@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/case-study-model/target/generated-sources/ecore"
+    modelPluginID="case-study-model" modelName="Combustionracecar" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="21.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true">
+  <foreignModel>combustionracecar.ecore</foreignModel>
+  <genPackages prefix="Combustionracecar" basePackage="kit.sdq.kastel.vitruvius.casestudy.model"
+      disposableProviderFactory="true" ecorePackage="combustionracecar.ecore#/">
+    <genClasses ecoreClass="combustionracecar.ecore#//CombustionRaceCar">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionRaceCar/vehicleId"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference combustionracecar.ecore#//CombustionRaceCar/powertrain"/>
+    </genClasses>
+    <genClasses ecoreClass="combustionracecar.ecore#//CombustionPowertrain">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionPowertrain/powertrainId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionPowertrain/mass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionPowertrain/maxPower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionPowertrain/mountInterface"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference combustionracecar.ecore#//CombustionPowertrain/engine"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference combustionracecar.ecore#//CombustionPowertrain/fuelTank"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference combustionracecar.ecore#//CombustionPowertrain/exhaustSystem"/>
+    </genClasses>
+    <genClasses ecoreClass="combustionracecar.ecore#//FuelTank">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//FuelTank/capacity"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//FuelTank/mass"/>
+    </genClasses>
+    <genClasses ecoreClass="combustionracecar.ecore#//CombustionEngine">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionEngine/maxPower"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionEngine/mass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionEngine/displacement"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//CombustionEngine/cylinderCount"/>
+    </genClasses>
+    <genClasses ecoreClass="combustionracecar.ecore#//ExhaustSystem">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//ExhaustSystem/mass"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute combustionracecar.ecore#//ExhaustSystem/backPressure"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
