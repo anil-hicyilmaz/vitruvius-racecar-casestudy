@@ -28,43 +28,11 @@ routine createElectricalRaceCar(
     create {
         val electricalRaceCar =
             new electrical::ElectricalRaceCar
-
-        val electricPowertrain =
-            new electrical::ElectricPowertrain
-
-        val battery =
-            new electrical::Battery
-
-        val motor =
-            new electrical::ElectricMotor
-
-        val inverter =
-            new electrical::Inverter
     }
 
     update {
         electricalRaceCar.vehicleId =
             raceCar.vehicleId
-
-        electricPowertrain.maxPower =
-            raceCar.ratedPower
-
-        if (raceCar.powertrainSlot !== null) {
-            electricPowertrain.mountInterface =
-                raceCar.powertrainSlot.mountInterface
-        }
-
-        electricPowertrain.battery =
-            battery
-
-        electricPowertrain.motor =
-            motor
-
-        electricPowertrain.inverter =
-            inverter
-
-        electricalRaceCar.powertrain =
-            electricPowertrain
 
         persistProjectRelative(
             raceCar,
@@ -78,18 +46,6 @@ routine createElectricalRaceCar(
             raceCar,
             electricalRaceCar
         )
-
-        addCorrespondenceBetween(
-            raceCar,
-            electricPowertrain
-        )
-
-        if (raceCar.powertrainSlot !== null) {
-            addCorrespondenceBetween(
-                raceCar.powertrainSlot,
-                electricPowertrain
-            )
-        }
     }
 }
 
@@ -134,17 +90,17 @@ routine updateElectricalRatedPower(
 ) {
     match {
         val electricPowertrain =
-            retrieve asserted electrical::ElectricPowertrain
+            retrieve optional electrical::ElectricPowertrain
                 corresponding to raceCar
     }
 
     update {
-        if (
-            electricPowertrain.maxPower !=
-            raceCar.ratedPower
-        ) {
-            electricPowertrain.maxPower =
-                raceCar.ratedPower
+        if (electricPowertrain.isPresent) {
+            val powertrain = electricPowertrain.get
+
+            if (powertrain.maxPower != raceCar.ratedPower) {
+                powertrain.maxPower = raceCar.ratedPower
+            }
         }
     }
 }
@@ -163,23 +119,23 @@ reaction UpdateElectricalMountInterface {
 routine updateElectricalMountInterface(
     racecar::PowertrainSlot powertrainSlot
 ) {
-
     match {
-
         val electricPowertrain =
-            retrieve asserted electrical::ElectricPowertrain
+            retrieve optional electrical::ElectricPowertrain
                 corresponding to powertrainSlot
     }
 
     update {
+        if (electricPowertrain.isPresent) {
+            val powertrain = electricPowertrain.get
 
-        if (
-            electricPowertrain.mountInterface !=
-            powertrainSlot.mountInterface
-        ) {
-
-            electricPowertrain.mountInterface =
+            if (
+                powertrain.mountInterface !=
                 powertrainSlot.mountInterface
+            ) {
+                powertrain.mountInterface =
+                    powertrainSlot.mountInterface
+            }
         }
     }
 }
@@ -228,6 +184,124 @@ routine deleteElectricalRaceCar(
 
             removeObject(
                 electricalCar
+            )
+        }
+    }
+}
+
+
+reaction CreateElectricPowertrain {
+    after element racecar::PowertrainSlot
+        replaced at racecar::RaceCar[powertrainSlot]
+
+    with newValue !== null &&
+         newValue.requiredType == PropulsionKind.ELECTRIC
+
+    call createElectricPowertrain(
+        affectedEObject,
+        newValue
+    )
+}
+
+routine createElectricPowertrain(
+    racecar::RaceCar raceCar,
+    racecar::PowertrainSlot powertrainSlot
+) {
+    match {
+        val electricalRaceCar =
+            retrieve asserted electrical::ElectricalRaceCar
+                corresponding to raceCar
+
+        require absence of electrical::ElectricPowertrain
+            corresponding to powertrainSlot
+    }
+
+    create {
+        val electricPowertrain =
+            new electrical::ElectricPowertrain
+
+        val battery =
+            new electrical::Battery
+
+        val motor =
+            new electrical::ElectricMotor
+
+        val inverter =
+            new electrical::Inverter
+    }
+
+    update {
+        electricalRaceCar.powertrain =
+            electricPowertrain
+
+        addCorrespondenceBetween(
+            powertrainSlot,
+            electricPowertrain
+        )
+
+        addCorrespondenceBetween(
+            raceCar,
+            electricPowertrain
+        )
+
+        electricPowertrain.mountInterface =
+            powertrainSlot.mountInterface
+
+        electricPowertrain.maxPower =
+            raceCar.ratedPower
+
+        electricPowertrain.battery =
+            battery
+
+        electricPowertrain.motor =
+            motor
+
+        electricPowertrain.inverter =
+            inverter
+    }
+}
+
+
+reaction DeleteElectricPowertrain {
+    after element racecar::PowertrainSlot
+        replaced at racecar::RaceCar[powertrainSlot]
+
+    with oldValue !== null &&
+         newValue === null
+
+    call deleteElectricPowertrain(
+        affectedEObject,
+        oldValue
+    )
+}
+
+routine deleteElectricPowertrain(
+    racecar::RaceCar raceCar,
+    racecar::PowertrainSlot oldPowertrainSlot
+) {
+    match {
+        val electricPowertrain =
+            retrieve optional electrical::ElectricPowertrain
+                corresponding to oldPowertrainSlot
+    }
+
+    update {
+        if (electricPowertrain.isPresent) {
+            val powertrain =
+                electricPowertrain.get
+
+            removeCorrespondenceBetween(
+                oldPowertrainSlot,
+                powertrain
+            )
+
+            removeCorrespondenceBetween(
+                raceCar,
+                powertrain
+            )
+
+            removeObject(
+                powertrain
             )
         }
     }
