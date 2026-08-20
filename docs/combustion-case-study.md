@@ -448,7 +448,7 @@ Not caused by this case study, but they affect it.
 | On `main`, the reactions file is named `" racecar2electrical.reactions"` (leading space) | Duplicate file after merge | Rename/remove on `main` |
 | Electric side registers no correspondences for powertrain / motor / battery / inverter | Update and delete rules on the electric side cannot `retrieve` those objects later | Register correspondences at creation time, as rule 2 here does |
 | Electric side ignores a `powertrainSlot` set after car creation | Two-step workflows silently produce no `mountInterface` | Add a `replaced at RaceCar[powertrainSlot]` reaction |
-| `Chassis.mass`, `Wheel.diameter`, `Wheel.width`, `Wheel.mass` still `upperBound="-1"` | List-valued instead of single-valued; `getMass().add(x)` instead of `setMass(x)` | Same fix already applied to `RaceCar.totalMass` / `ratedPower` on `main` |
+| ~~`Chassis.mass`, `Wheel.diameter/width/mass` were `upperBound="-1"`~~ | ~~List-valued instead of single-valued~~ | **Fixed** — bounds corrected in `racecar.ecore`, callers switched from `getMass().add(x)` to `setMass(x)` |
 
 ---
 
