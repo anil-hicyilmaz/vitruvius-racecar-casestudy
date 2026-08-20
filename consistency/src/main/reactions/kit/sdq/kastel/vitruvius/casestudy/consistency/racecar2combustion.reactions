@@ -1,0 +1,38 @@
+import kit.sdq.kastel.vitruvius.casestudy.model.racecar.PropulsionKind
+
+import "https://kit.edu/vitruvius/case-study/racecar/1.0" as racecar
+import "https://kit.edu/vitruvius/case-study/combustionracecar/1.0" as combustion
+
+
+reactions: racecar2combustion
+
+in reaction to changes in racecar
+execute actions in combustion
+
+
+reaction CreateCombustionRaceCar {
+    after element racecar::RaceCar inserted as root
+    with newValue.propulsionKind == PropulsionKind.COMBUSTION
+
+    call createCombustionRaceCar(newValue)
+}
+
+
+routine createCombustionRaceCar(racecar::RaceCar raceCar) {
+
+    match {
+        require absence of combustion::CombustionRaceCar corresponding to raceCar
+    }
+
+    create {
+        val combustionRaceCar = new combustion::CombustionRaceCar
+    }
+
+    update {
+        combustionRaceCar.vehicleId = raceCar.vehicleId
+
+        persistProjectRelative(raceCar, combustionRaceCar, "example.combustionracecar")
+
+        addCorrespondenceBetween(combustionRaceCar, raceCar)
+    }
+}
