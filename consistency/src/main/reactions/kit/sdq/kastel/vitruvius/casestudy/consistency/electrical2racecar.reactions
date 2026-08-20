@@ -1,0 +1,38 @@
+import "https://kit.edu/vitruvius/case-study/racecar/1.0" as racecar
+import "https://kit.edu/vitruvius/case-study/electricalracecar/1.0" as electrical
+
+
+reactions: electrical2racecar
+
+in reaction to changes in electrical
+execute actions in racecar
+
+
+reaction UpdateRaceCarRatedPower {
+    after attribute replaced at
+        electrical::ElectricPowertrain[maxPower]
+
+    call updateRaceCarRatedPower(
+        affectedEObject
+    )
+}
+
+routine updateRaceCarRatedPower(
+    electrical::ElectricPowertrain electricPowertrain
+) {
+    match {
+        val raceCar =
+            retrieve asserted racecar::RaceCar
+                corresponding to electricPowertrain
+    }
+
+    update {
+        if (
+            raceCar.ratedPower !=
+            electricPowertrain.maxPower
+        ) {
+            raceCar.ratedPower =
+                electricPowertrain.maxPower
+        }
+    }
+}
