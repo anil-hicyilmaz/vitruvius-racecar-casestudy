@@ -4,6 +4,7 @@
     nsPrefix="combustionracecar">
   <eClassifiers xsi:type="ecore:EClass" name="CombustionRaceCar">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vehicleId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="powertrain" lowerBound="1"
         eType="#//CombustionPowertrain" containment="true"/>
   </eClassifiers>
