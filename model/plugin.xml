@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated electricalracecar -->
+      <package
+            uri="https://kit.edu/vitruvius/case-study/electricalracecar/1.0"
+            class="kit.sdq.kastel.vitruvius.casestudy.model.electricalracecar.ElectricalracecarPackage"
+            genModel="src/main/ecore/electricalracecar.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated racecar -->
+      <package
+            uri="https://kit.edu/vitruvius/case-study/racecar/1.0"
+            class="kit.sdq.kastel.vitruvius.casestudy.model.racecar.RacecarPackage"
+            genModel="src/main/ecore/racecar.genmodel"/>
+   </extension>
+
+</plugin>

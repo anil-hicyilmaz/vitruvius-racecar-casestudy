@@ -6,13 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="case-study-model" />
+        <module name="case-study-viewtype" />
+        <module name="case-study-consistency" />
+        <module name="case-study-vsum" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="case-study-consistency" target="21" />
-      <module name="case-study-model" target="21" />
-      <module name="case-study-viewtype" target="21" />
-      <module name="case-study-vsum" target="21" />
-    </bytecodeTargetLevel>
   </component>
 </project>
