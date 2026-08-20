@@ -186,11 +186,10 @@ routine updateElectricalMountInterface(
 
 
 reaction DeleteElectricalRaceCar {
-
     after element racecar::RaceCar removed as root
 
     call deleteElectricalRaceCar(
-        affectedEObject
+        oldValue
     )
 }
 
@@ -208,29 +207,27 @@ routine deleteElectricalRaceCar(
     }
 
     update {
-        if (electricPowertrain !== null) {
-            if (raceCar.powertrainSlot !== null) {
-                removeCorrespondenceBetween(
-                    raceCar.powertrainSlot,
-                    electricPowertrain
-                )
-            }
+        if (electricPowertrain.isPresent) {
+            val powertrain =
+                electricPowertrain.get
 
             removeCorrespondenceBetween(
                 raceCar,
-                electricPowertrain
+                powertrain
             )
         }
 
+        if (electricalRaceCar.isPresent) {
+            val electricalCar =
+                electricalRaceCar.get
 
-        if (electricalRaceCar !== null) {
             removeCorrespondenceBetween(
                 raceCar,
-                electricalRaceCar
+                electricalCar
             )
 
             removeObject(
-                electricalRaceCar
+                electricalCar
             )
         }
     }
