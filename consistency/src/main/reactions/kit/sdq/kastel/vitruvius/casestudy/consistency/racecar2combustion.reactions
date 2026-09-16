@@ -54,6 +54,12 @@ routine createCombustionPowertrain(racecar::RaceCar raceCar, racecar::Powertrain
     match {
         require absence of combustion::CombustionPowertrain corresponding to slot
         val cCar = retrieve combustion::CombustionRaceCar corresponding to raceCar
+
+        // Constraint: a combustion powertrain cannot be built for a car with no positive
+        // rated power. If this fails, the routine aborts silently and no (invalid) powertrain
+        // is created - see docs, section "Constraints", for why this is a repair-time guard
+        // and not input validation.
+        check raceCar.ratedPower > 0
     }
 
     create {
@@ -124,6 +130,10 @@ routine updateEngineMaxPower(racecar::RaceCar raceCar) {
 
     match {
         val cEngine = retrieve combustion::CombustionEngine corresponding to raceCar.powertrainSlot
+
+        // Same constraint as at creation time: never propagate a non-positive rated power
+        // onto an existing engine. The engine simply keeps its last valid maxPower instead.
+        check raceCar.ratedPower > 0
     }
 
     update {
@@ -145,5 +155,65 @@ routine updateCombustionName(racecar::RaceCar raceCar) {
 
     update {
         cCar.name = raceCar.name
+    }
+}
+
+// ---------------------------------------------------------------------------------------------
+// User-decided model creation.
+//
+// CreateCombustionRaceCar (above) only fires "after element racecar::RaceCar inserted as root",
+// i.e. the propulsion kind is already COMBUSTION at the moment the car is first created. That
+// path is fully automatic - the engineer never has to decide anything, Vitruvius just repairs
+// the model.
+//
+// This reaction covers the other case: a RaceCar that already exists is *converted* to
+// combustion propulsion later on (an "attribute replaced" change, not an insertion). That is a
+// much bigger decision - the car may already carry other data - so instead of silently creating
+// a CombustionRaceCar, this routine asks the user for confirmation first via the UserInteractor.
+// Only a "yes" leads to persistProjectRelative + addCorrespondenceBetween actually running; a
+// "no" leaves the freshly-created (but never attached) CombustionRaceCar object unreferenced, so
+// it is simply garbage-collected and never appears in any view - the same "no persistence -> no
+// effect" mechanism documented for missing persistProjectRelative calls.
+// ---------------------------------------------------------------------------------------------
+
+reaction PropulsionKindChangedToCombustion {
+    after attribute replaced at racecar::RaceCar[propulsionKind]
+    with newValue == PropulsionKind.COMBUSTION && oldValue != PropulsionKind.COMBUSTION
+
+    call createCombustionRaceCarWithUserConfirmation(affectedEObject)
+}
+
+
+routine createCombustionRaceCarWithUserConfirmation(racecar::RaceCar raceCar) {
+
+    match {
+        require absence of combustion::CombustionRaceCar corresponding to raceCar
+    }
+
+    create {
+        val combustionRaceCar = new combustion::CombustionRaceCar
+    }
+
+    update {
+        val userConfirmedCreation = userInteractor
+            .getConfirmationDialogBuilder()
+            .message(
+                "RaceCar " + raceCar.vehicleId + " was switched to COMBUSTION propulsion "
+                + "after it was created. Create the corresponding CombustionRaceCar now?"
+            )
+            .startInteraction()
+
+        if (userConfirmedCreation) {
+            combustionRaceCar.vehicleId = raceCar.vehicleId
+            combustionRaceCar.name = raceCar.name
+
+            persistProjectRelative(
+                raceCar,
+                combustionRaceCar,
+                "models/combustion/" + raceCar.vehicleId + ".combustionracecar"
+            )
+
+            addCorrespondenceBetween(combustionRaceCar, raceCar)
+        }
     }
 }

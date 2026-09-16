@@ -1,0 +1,68 @@
+import "https://kit.edu/vitruvius/case-study/combustionracecar/1.0" as combustion
+
+
+reactions: combustion2combustion
+
+in reaction to changes in combustion
+execute actions in combustion
+
+
+// ---------------------------------------------------------------------------------------------
+// Self-consistency within the combustion model.
+//
+// Every other reaction in this case study is cross-metamodel: racecar -> combustion. This file
+// shows that Vitruvius reactions are not limited to that; they can just as well keep a *single*
+// model internally consistent. CombustionPowertrain.mass has no counterpart in racecar.ecore at
+// all - it is a derived value, computed purely from data that already lives on the combustion
+// side (engine.mass + fuelTank.mass + exhaustSystem.mass).
+//
+// Three reactions - one per contributing attribute - all funnel into the same routine, so
+// whichever part is edited, the powertrain's total mass is always kept correct. This is more
+// complex than the plain 1:1 attribute copies in racecar2combustion.reactions: it combines three
+// independent trigger points into one computed value, and it re-reads all three current values
+// rather than just copying the one that changed.
+// ---------------------------------------------------------------------------------------------
+
+reaction EngineMassChanged {
+    after attribute replaced at combustion::CombustionEngine[mass]
+    call recalculatePowertrainMassFromEngine(affectedEObject)
+}
+
+routine recalculatePowertrainMassFromEngine(combustion::CombustionEngine engine) {
+    update {
+        val cPowertrain = engine.eContainer as kit.sdq.kastel.vitruvius.casestudy.model.combustionracecar.CombustionPowertrain
+        cPowertrain.mass = cPowertrain.engine.mass
+            + cPowertrain.fuelTank.mass
+            + cPowertrain.exhaustSystem.mass
+    }
+}
+
+
+reaction FuelTankMassChanged {
+    after attribute replaced at combustion::FuelTank[mass]
+    call recalculatePowertrainMassFromFuelTank(affectedEObject)
+}
+
+routine recalculatePowertrainMassFromFuelTank(combustion::FuelTank fuelTank) {
+    update {
+        val cPowertrain = fuelTank.eContainer as kit.sdq.kastel.vitruvius.casestudy.model.combustionracecar.CombustionPowertrain
+        cPowertrain.mass = cPowertrain.engine.mass
+            + cPowertrain.fuelTank.mass
+            + cPowertrain.exhaustSystem.mass
+    }
+}
+
+
+reaction ExhaustSystemMassChanged {
+    after attribute replaced at combustion::ExhaustSystem[mass]
+    call recalculatePowertrainMassFromExhaustSystem(affectedEObject)
+}
+
+routine recalculatePowertrainMassFromExhaustSystem(combustion::ExhaustSystem exhaustSystem) {
+    update {
+        val cPowertrain = exhaustSystem.eContainer as kit.sdq.kastel.vitruvius.casestudy.model.combustionracecar.CombustionPowertrain
+        cPowertrain.mass = cPowertrain.engine.mass
+            + cPowertrain.fuelTank.mass
+            + cPowertrain.exhaustSystem.mass
+    }
+}

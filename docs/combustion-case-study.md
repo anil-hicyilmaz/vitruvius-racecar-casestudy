@@ -149,11 +149,26 @@ which the test registers on the V-SUM.
 | # | Reaction | Trigger | Effect |
 |---|---|---|---|
 | 1 | `CreateCombustionRaceCar` | `RaceCar inserted as root`, guarded by `propulsionKind == COMBUSTION` | Creates `CombustionRaceCar`, copies `vehicleId` + `name`, persists it, registers correspondence |
-| 2 | `PowertrainSlotSetOnRaceCar` | `PowertrainSlot replaced at RaceCar[powertrainSlot]`, guarded by `newValue !== null` | Creates `CombustionPowertrain` **plus** its three mandatory children, copies `mountInterface` and `ratedPower` |
+| 2 | `PowertrainSlotSetOnRaceCar` | `PowertrainSlot replaced at RaceCar[powertrainSlot]`, guarded by `newValue !== null` | Creates `CombustionPowertrain` **plus** its three mandatory children, copies `mountInterface` and `ratedPower`. Constrained by `check raceCar.ratedPower > 0` (see §5a) |
 | 3 | `RaceCarNameChanged` | `attribute replaced at RaceCar[name]` | Updates `CombustionRaceCar.name` |
-| 4 | `RaceCarRatedPowerChanged` | `attribute replaced at RaceCar[ratedPower]` | Updates `CombustionEngine.maxPower` |
+| 4 | `RaceCarRatedPowerChanged` | `attribute replaced at RaceCar[ratedPower]` | Updates `CombustionEngine.maxPower`. Constrained by `check raceCar.ratedPower > 0` (see §5a) |
 | 5 | `RaceCarVehicleIdChanged` | `attribute replaced at RaceCar[vehicleId]` | Written, but never fires — see §7 |
 | 6 | `PowertrainSlotDeleted` | `PowertrainSlot deleted` | Removes `CombustionPowertrain` **and** its correspondence |
+| 7 | `PropulsionKindChangedToCombustion` | `attribute replaced at RaceCar[propulsionKind]`, guarded by `newValue == COMBUSTION && oldValue != COMBUSTION` | **User-decided** creation of `CombustionRaceCar` for a car converted to combustion *after* it already existed — asks for confirmation via `UserInteractor` before persisting. See §5b. |
+
+Three more reactions live in a **second** file,
+[`combustion2combustion.reactions`](../consistency/src/main/reactions/kit/sdq/kastel/vitruvius/casestudy/consistency/combustion2combustion.reactions),
+reacting to changes *within* the combustion model itself rather than to `racecar` changes:
+
+| # | Reaction | Trigger | Effect |
+|---|---|---|---|
+| 8 | `EngineMassChanged` | `attribute replaced at CombustionEngine[mass]` | Recomputes `CombustionPowertrain.mass` as `engine.mass + fuelTank.mass + exhaustSystem.mass` |
+| 9 | `FuelTankMassChanged` | `attribute replaced at FuelTank[mass]` | Same recomputation, triggered from the fuel tank side |
+| 10 | `ExhaustSystemMassChanged` | `attribute replaced at ExhaustSystem[mass]` | Same recomputation, triggered from the exhaust side |
+
+See [`reactions-constraints-tutorial.md`](reactions-constraints-tutorial.md) for a full,
+tutorial-style walkthrough of how these two rule sets, the `check` constraints, and the
+user-decided creation path actually work under the hood.
 
 ### Rule 1 explained line by line
 
@@ -391,6 +406,16 @@ Every test builds a **fresh V-SUM in a JUnit `@TempDir`**, so tests are independ
 
 Coverage: create · update · delete · two negative cases.
 
+A second test class,
+[`CombustionInternalConsistencyVsumTest.java`](../vsum/src/test/java/kit/sdq/kastel/vitruvius/casestudy/vsum/CombustionInternalConsistencyVsumTest.java),
+covers everything added on top of that: the `combustion2combustion` mass-recalculation reactions,
+the two `ratedPower > 0` constraints, the user-decided creation path (both a confirmed and a
+declined run), and a combined-attribute-single-commit propagation check. It registers **two**
+change propagation specifications in the same V-SUM, since `combustion2combustion` reactions need
+to run alongside `racecar2combustion` ones. See
+[`reactions-constraints-tutorial.md`](reactions-constraints-tutorial.md) for the reasoning behind
+each of those tests.
+
 ### Test infrastructure
 
 Four helpers carry the whole pattern:
@@ -454,9 +479,17 @@ Not caused by this case study, but they affect it.
 
 ## 11. Next steps
 
+- [x] Add a repair-time constraint mechanism — done via `check` in `match` blocks (§5 of
+      [`reactions-constraints-tutorial.md`](reactions-constraints-tutorial.md)); this rejects
+      only the *repair*, not the original edit
+- [x] Add a self-consistency example within one metamodel — done via
+      `combustion2combustion.reactions` (derived `CombustionPowertrain.mass`)
+- [x] Add a user-decided (as opposed to automatic) model-creation path — done via
+      `PropulsionKindChangedToCombustion`
 - [ ] Extend the metamodel element by element, adding a rule + test for each addition
 - [ ] Propagate `Chassis` / `Axle` data if the domain requires it
-- [ ] Consider VitruviusOCL constraints as a declarative complement to the reactions
+- [ ] Consider real OCL / EMF Validation constraints as an **edit-time** complement — the `check`
+      guards added in this round only gate the repair, they cannot reject the original edit itself
 - [ ] Decide with the supervisors whether propagation should also run combustion → racecar (currently one-directional)
 - [ ] Resolve the `iD="true"` question on the shared `racecar.ecore`
 

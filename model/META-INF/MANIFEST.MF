@@ -13,7 +13,10 @@ Export-Package: kit.sdq.kastel.vitruvius.casestudy.model.electricalracecar,
  kit.sdq.kastel.vitruvius.casestudy.model.electricalracecar.util,
  kit.sdq.kastel.vitruvius.casestudy.model.racecar,
  kit.sdq.kastel.vitruvius.casestudy.model.racecar.impl,
- kit.sdq.kastel.vitruvius.casestudy.model.racecar.util
+ kit.sdq.kastel.vitruvius.casestudy.model.racecar.util,
+ kit.sdq.kastel.vitruvius.casestudy.model.combustionracecar,
+ kit.sdq.kastel.vitruvius.casestudy.model.combustionracecar.impl,
+ kit.sdq.kastel.vitruvius.casestudy.model.combustionracecar.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport
 Bundle-ActivationPolicy: lazy
