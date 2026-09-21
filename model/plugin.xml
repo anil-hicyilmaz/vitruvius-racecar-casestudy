@@ -22,4 +22,12 @@
             genModel="src/main/ecore/racecar.genmodel"/>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated combustionracecar -->
+      <package
+            uri="https://kit.edu/vitruvius/case-study/combustionracecar/1.0"
+            class="kit.sdq.kastel.vitruvius.casestudy.model.combustionracecar.CombustionracecarPackage"
+            genModel="src/main/ecore/combustionracecar.genmodel"/>
+   </extension>
+
 </plugin>

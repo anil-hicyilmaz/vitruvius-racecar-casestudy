@@ -4,7 +4,7 @@
     nsPrefix="electricalracecar">
   <eClassifiers xsi:type="ecore:EClass" name="ElectricalRaceCar">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="vehicleId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="powertrain" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="powertrain" lowerBound="0" upperBound="1"
         eType="#//ElectricPowertrain" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ElectricPowertrain">

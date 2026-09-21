@@ -21,16 +21,25 @@ import kit.sdq.kastel.vitruvius.casestudy.model.racecar.PropulsionKind;
 import kit.sdq.kastel.vitruvius.casestudy.model.racecar.RaceCar;
 import kit.sdq.kastel.vitruvius.casestudy.model.racecar.RacecarFactory;
 
+import tools.vitruv.change.testutils.TestUserInteraction;
 import tools.vitruv.framework.views.CommittableView;
 import tools.vitruv.framework.views.View;
 import tools.vitruv.framework.vsum.internal.InternalVirtualModel;
 
-class RaceCarVsumTest {
+class ElectricalRaceCarVsumTest {
 
     @Test
     void createsElectricalModelForElectricRaceCar(@TempDir Path storageFolder)
             throws IOException {
-        var vsum = RaceCarVsum.create(storageFolder);
+        TestUserInteraction interactions =
+            expectProfile("Performance");
+
+        var vsum = RaceCarVsum.create(
+            storageFolder,
+            new TestUserInteraction.ResultProvider(
+                interactions
+            )
+        );
 
         try {
             RaceCar sourceRaceCar = createElectricRaceCar();
@@ -77,6 +86,8 @@ class RaceCarVsumTest {
                     )
                 )
             );
+
+            interactions.assertAllInteractionsOccurred();
         } finally {
             vsum.dispose();
         }
@@ -126,8 +137,16 @@ class RaceCarVsumTest {
         @TempDir Path tempDir
     ) throws IOException {
 
+        TestUserInteraction interactions =
+            expectProfile("Performance");
+
         InternalVirtualModel vsum =
-            RaceCarVsum.create(tempDir);
+            RaceCarVsum.create(
+                tempDir,
+                new TestUserInteraction.ResultProvider(
+                    interactions
+                )
+            );
 
         try {
             // 1. Create RaceCar
@@ -218,6 +237,7 @@ class RaceCarVsumTest {
 
             deleteSlotView.commitChanges();
 
+            interactions.assertAllInteractionsOccurred();
 
             // 5. Verify propagation
             View electricalViewAfterDeletion =
@@ -239,5 +259,18 @@ class RaceCarVsumTest {
         } finally {
             vsum.dispose();
         }
+    }
+
+    private TestUserInteraction expectProfile(
+        String selectedProfile) {
+
+        TestUserInteraction interactions =
+            new TestUserInteraction();
+
+        interactions
+            .onNextMultipleChoiceSingleSelection()
+            .respondWith(selectedProfile);
+
+        return interactions;
     }
 }

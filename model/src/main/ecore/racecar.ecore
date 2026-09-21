@@ -15,7 +15,7 @@
         eType="#//Axle" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="chassis" lowerBound="1"
         eType="#//Chassis" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="powertrainSlot" lowerBound="1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="powertrainSlot" lowerBound="0" upperBound="1"
         eType="#//PowertrainSlot" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Chassis">

@@ -1,3 +1,7 @@
+import java.util.Arrays
+
+import tools.vitruv.change.interaction.UserInteractionOptions.WindowModality
+
 import kit.sdq.kastel.vitruvius.casestudy.model.racecar.PropulsionKind
 
 import "https://kit.edu/vitruvius/case-study/racecar/1.0" as racecar
@@ -195,6 +199,7 @@ reaction CreateElectricPowertrain {
         replaced at racecar::RaceCar[powertrainSlot]
 
     with newValue !== null &&
+         affectedEObject.propulsionKind == PropulsionKind.ELECTRIC &&
          newValue.requiredType == PropulsionKind.ELECTRIC
 
     call createElectricPowertrain(
@@ -258,6 +263,44 @@ routine createElectricPowertrain(
 
         electricPowertrain.inverter =
             inverter
+
+        val selectedProfile = userInteractor
+                .singleSelectionDialogBuilder
+                .message(
+                    "Select the electrical profile for " +
+                        raceCar.vehicleId
+                )
+                .choices(
+                    Arrays.asList(
+                        "Endurance",
+                        "Performance"
+                    )
+                )
+                .title("Electrical profile")
+                .windowModality(WindowModality.MODAL)
+                .startInteraction
+
+            switch selectedProfile {
+                case 0: {
+                    battery.capacity = 100.0
+                    battery.mass = 420.0
+                    motor.mass = 55.0
+                    inverter.mass = 20.0
+                }
+
+                case 1: {
+                    battery.capacity = 75.0
+                    battery.mass = 330.0
+                    motor.mass = 65.0
+                    inverter.mass = 25.0
+                }
+
+                default: {
+                    throw new IllegalStateException(
+                        "No electrical profile was selected"
+                    )
+                }
+            }
     }
 }
 
