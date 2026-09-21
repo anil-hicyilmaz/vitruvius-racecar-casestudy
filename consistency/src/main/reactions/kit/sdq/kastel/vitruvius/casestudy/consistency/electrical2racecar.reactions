@@ -36,3 +36,57 @@ routine updateRaceCarRatedPower(
         }
     }
 }
+
+
+reaction RecalculateRaceCarMassAfterPowertrainMassChanged {
+    after attribute replaced at
+        electrical::ElectricPowertrain[mass]
+
+    call recalculateRaceCarTotalMass(
+        affectedEObject
+    )
+}
+
+routine recalculateRaceCarTotalMass(
+    electrical::ElectricPowertrain electricPowertrain
+) {
+    match {
+        val raceCar =
+            retrieve optional racecar::RaceCar
+                corresponding to electricPowertrain
+    }
+
+    update {
+        if (raceCar.isPresent) {
+            val car = raceCar.get
+
+            val chassisMass =
+                if (car.chassis === null)
+                    0.0
+                else
+                    car.chassis.mass
+
+            var double wheelsMass = 0.0
+
+            for (axle : car.axles) {
+                for (wheel : axle.wheels) {
+                    wheelsMass =
+                        wheelsMass + wheel.mass
+                }
+            }
+
+            val calculatedTotalMass =
+                chassisMass +
+                wheelsMass +
+                electricPowertrain.mass
+
+            if (
+                car.totalMass !=
+                calculatedTotalMass
+            ) {
+                car.totalMass =
+                    calculatedTotalMass
+            }
+        }
+    }
+}

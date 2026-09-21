@@ -1,0 +1,73 @@
+import kit.sdq.kastel.vitruvius.casestudy.model.racecar.Axle
+import kit.sdq.kastel.vitruvius.casestudy.model.racecar.RaceCar
+
+import "https://kit.edu/vitruvius/case-study/racecar/1.0" as racecar
+import "https://kit.edu/vitruvius/case-study/electricalracecar/1.0" as electrical
+
+
+reactions: racecarInternal
+
+in reaction to changes in racecar
+execute actions in racecar
+
+
+reaction RecalculateRaceCarMassAfterChassisMassChanged {
+    after attribute replaced at racecar::Chassis[mass]
+
+    call recalculateRaceCarTotalMass(
+        affectedEObject.eContainer as RaceCar
+    )
+}
+
+
+reaction RecalculateRaceCarMassAfterWheelMassChanged {
+    after attribute replaced at racecar::Wheel[mass]
+
+    call recalculateRaceCarTotalMass(
+        (affectedEObject.eContainer as Axle)
+            .eContainer as RaceCar
+    )
+}
+
+
+routine recalculateRaceCarTotalMass(
+    racecar::RaceCar raceCar
+) {
+    match {
+        val electricPowertrain =
+            retrieve optional electrical::ElectricPowertrain
+                corresponding to raceCar
+    }
+
+    update {
+        if (electricPowertrain.isPresent) {
+            val chassisMass =
+                if (raceCar.chassis === null)
+                    0.0
+                else
+                    raceCar.chassis.mass
+
+            var double wheelsMass = 0.0
+
+            for (axle : raceCar.axles) {
+                for (wheel : axle.wheels) {
+                    wheelsMass =
+                        wheelsMass + wheel.mass
+                }
+            }
+
+            val calculatedTotalMass =
+                chassisMass +
+                wheelsMass +
+                electricPowertrain.get.mass
+
+            if (
+                raceCar.totalMass !=
+                calculatedTotalMass
+            ) {
+                raceCar.totalMass =
+                    calculatedTotalMass
+            }
+        }
+    }
+}

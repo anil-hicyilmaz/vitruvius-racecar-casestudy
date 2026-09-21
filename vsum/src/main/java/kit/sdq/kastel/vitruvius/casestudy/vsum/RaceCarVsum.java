@@ -6,9 +6,15 @@ import java.nio.file.Path;
 import java.util.Arrays;
 import mir.reactions.electrical2racecar.Electrical2racecarChangePropagationSpecification;
 import mir.reactions.racecar2electrical.Racecar2electricalChangePropagationSpecification;
+import mir.reactions.electricalInternal.ElectricalInternalChangePropagationSpecification;
+import mir.reactions.racecarInternal.RacecarInternalChangePropagationSpecification;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
+import tools.vitruv.change.interaction.CliInteractionResultProviderImpl;
+import tools.vitruv.change.interaction.InteractionResultProvider;
+import tools.vitruv.change.propagation.ChangePropagationMode;
 import tools.vitruv.change.testutils.TestUserInteraction;
+import tools.vitruv.dsls.reactions.runtime.correspondence.CorrespondencePackage;
 import tools.vitruv.framework.views.CommittableView;
 import tools.vitruv.framework.views.View;
 import tools.vitruv.framework.views.ViewTypeFactory;
@@ -21,26 +27,54 @@ public final class RaceCarVsum {
 
   private RaceCarVsum() {}
 
-  public static InternalVirtualModel create(Path storageFolder) throws IOException {
-    Path absoluteStorageFolder = storageFolder.toAbsolutePath().normalize();
-    Files.createDirectories(absoluteStorageFolder.resolve("models/electrical"));
+  public static InternalVirtualModel create(Path storageFolder)
+      throws IOException {
+
+    return create(
+        storageFolder,
+        new CliInteractionResultProviderImpl()
+    );
+  }
+
+  public static InternalVirtualModel create(
+      Path storageFolder,
+      InteractionResultProvider interactionResultProvider
+  ) throws IOException {
+
+    Path absoluteStorageFolder =
+        storageFolder.toAbsolutePath().normalize();
+
+    Files.createDirectories(
+        absoluteStorageFolder.resolve("models/electrical")
+    );
+
+    Files.createDirectories(
+        absoluteStorageFolder.resolve("models/combustion")
+    );
 
     Resource.Factory.Registry.INSTANCE
         .getExtensionToFactoryMap()
         .put("*", new XMIResourceFactoryImpl());
 
-    // Required when an existing VSUM and its correspondence model are reloaded.
-    tools.vitruv.dsls.reactions.runtime.correspondence.CorrespondencePackage.eINSTANCE.eClass();
+    CorrespondencePackage.eINSTANCE.eClass();
 
-    return new VirtualModelBuilder()
-        .withStorageFolder(absoluteStorageFolder)
-        .withUserInteractorForResultProvider(
-            new TestUserInteraction.ResultProvider(new TestUserInteraction()))
-        .withChangePropagationSpecifications(
-            new Racecar2electricalChangePropagationSpecification(),
-            new Electrical2racecarChangePropagationSpecification()
-    )
-        .buildAndInitialize();
+    InternalVirtualModel vsum =
+        new VirtualModelBuilder()
+            .withStorageFolder(absoluteStorageFolder)
+            .withUserInteractorForResultProvider(interactionResultProvider)
+            .withChangePropagationSpecifications(
+                new Racecar2electricalChangePropagationSpecification(),
+                new ElectricalInternalChangePropagationSpecification(),
+                new Electrical2racecarChangePropagationSpecification(),
+                new RacecarInternalChangePropagationSpecification()
+            )
+            .buildAndInitialize();
+
+    vsum.setChangePropagationMode(
+        ChangePropagationMode.TRANSITIVE_CYCLIC
+    );
+
+    return vsum;
   }
 
   public static CommittableView createCommittableIdentityView(VirtualModel vsum) {
@@ -57,4 +91,6 @@ public final class RaceCarVsum {
         .forEach(element -> selector.setSelected(element, true));
     return selector.createView();
   }
+
+
 }
