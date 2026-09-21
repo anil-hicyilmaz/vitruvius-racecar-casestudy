@@ -1,0 +1,62 @@
+import kit.sdq.kastel.vitruvius.casestudy.model.electricalracecar.ElectricPowertrain
+
+import "https://kit.edu/vitruvius/case-study/electricalracecar/1.0" as electrical
+
+
+reactions: electricalInternal
+
+in reaction to changes in electrical
+execute actions in electrical
+
+
+reaction RecalculatePowertrainMassAfterBatteryMassChanged {
+    after attribute replaced at electrical::Battery[mass]
+
+    call recalculateElectricPowertrainMass(
+        affectedEObject.eContainer as ElectricPowertrain
+    )
+}
+
+
+reaction RecalculatePowertrainMassAfterMotorMassChanged {
+    after attribute replaced at electrical::ElectricMotor[mass]
+
+    call recalculateElectricPowertrainMass(
+        affectedEObject.eContainer as ElectricPowertrain
+    )
+}
+
+
+reaction RecalculatePowertrainMassAfterInverterMassChanged {
+    after attribute replaced at electrical::Inverter[mass]
+
+    call recalculateElectricPowertrainMass(
+        affectedEObject.eContainer as ElectricPowertrain
+    )
+}
+
+
+routine recalculateElectricPowertrainMass(
+    electrical::ElectricPowertrain electricPowertrain
+) {
+    update {
+        if (
+            electricPowertrain.battery !== null &&
+            electricPowertrain.motor !== null &&
+            electricPowertrain.inverter !== null
+        ) {
+            val calculatedMass =
+                electricPowertrain.battery.mass +
+                electricPowertrain.motor.mass +
+                electricPowertrain.inverter.mass
+
+            if (
+                electricPowertrain.mass !=
+                calculatedMass
+            ) {
+                electricPowertrain.mass =
+                    calculatedMass
+            }
+        }
+    }
+}
